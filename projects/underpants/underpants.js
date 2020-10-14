@@ -367,11 +367,14 @@ _.partition = function(array, func) {
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 _.map = function(collection, func) {
-    let newArr = [];
-    _.each(collection, function(thing, i, array) {
-      newArr.push(func(thing, i, array));  
-    });
-    return newArr;
+    let newArray = [];
+ for(let i = 0; i < collection.length; i++){
+  if(func(collection[i],[i],collection) === true){
+   newArray.push(collection[i]);
+  }
+ }for (let key in collection ){
+  newArray.push(func(collection[key], [key], collection));
+ }return newArray;
 };
 
 /** _.pluck
@@ -385,12 +388,16 @@ _.map = function(collection, func) {
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 _.pluck = function(array, property){
-    let names = array.map(function(item, index, array){
-        return item['name'];
-    });
 
-    return names;
-};
+return array.map(array, function(obj) {
+        return obj[property];
+    });
+};//     let names = array.map(function(item, index, array){
+//         return item['name'];
+//     });
+
+//     return names;
+// };
 
 /** _.every
 * Arguments:
