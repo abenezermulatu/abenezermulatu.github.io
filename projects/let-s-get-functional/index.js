@@ -96,8 +96,7 @@ return moneyMoney + personWithMoney;
 },0);
 let averageNumber = total / size;
 // return the output ^
-console.log(averageNumber)
-// return averageNumber; 
+return averageNumber;
 };
 
 
@@ -113,21 +112,21 @@ return firstLetter.length;
 };
 
 
-var friendFirstLetterCount = function(array, customer, letter){
-    // first letter is being searched for over the array
+var friendFirstLetterCount = function(array, customer, letter) {
+ // first letter is being searched for over the array
     let filterCount = array.filter(function(customerPerson){
         return customerPerson.name.toUpperCase() === customer.toUpperCase();
     });
     // makes array of friends
     let filterCountNames = _.pluck(filterCount, "friends");
-    
     filterCountNames = filterCountNames[0];
     // return all friends
     let filterArray = _.filter(filterCountNames, function(person){
-        return (person[0].toUpperCase() === letter.toUpperCase());
+        return person.name[0].toUpperCase() === letter.toUpperCase();
     });
         return filterArray.length;
 };
+
 
 var friendsCount = function(array, customerName){
     // place holder [];

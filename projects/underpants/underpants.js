@@ -501,22 +501,19 @@ _.some = function(collection, func){
 */
 _.reduce = function(array, callBackFunction, initialValue) {
     //chek if initialValue is defined
-    if (initialValue !== undefined) {
-        var result = initialValue;
-        _.each(array, function(element, index, array) {
-            result = callBackFunction(result, element, index, array);
-        });
-        return result;
-        }
-        else {
-            result = array[0];
-            _.each(array, function(element, index, arrays) {
-                if (index !== 0) {
-                    result = callBackFunction(result, element, index, array);
-                }
-            });
-            return result;
-        }
+    let accumulatedValue = initialValue || initialValue === undefined;
+    
+    for(let i = 0; i < array.length; i++) {
+     
+        accumulatedValue = callBackFunction(
+            accumulatedValue,
+            array[i],
+            i,
+            array
+        );
+    }
+    
+    return accumulatedValue;
 };
 
 /** _.extend
